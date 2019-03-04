@@ -7,27 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50986701222DA7FA0096FFF1 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50986700222DA7FA0096FFF1 /* Springboard.swift */; };
+		50986703222DAE300096FFF1 /* Accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50986702222DAE300096FFF1 /* Accelerometer.swift */; };
 		50AA8E27222BEBB20052640B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA8E26222BEBB20052640B /* AppDelegate.swift */; };
-		50AA8E29222BEBB20052640B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 50AA8E28222BEBB20052640B /* GameScene.sks */; };
-		50AA8E2B222BEBB20052640B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 50AA8E2A222BEBB20052640B /* Actions.sks */; };
-		50AA8E2D222BEBB20052640B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA8E2C222BEBB20052640B /* GameScene.swift */; };
+		50AA8E29222BEBB20052640B /* Map.sks in Resources */ = {isa = PBXBuildFile; fileRef = 50AA8E28222BEBB20052640B /* Map.sks */; };
+		50AA8E2D222BEBB20052640B /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA8E2C222BEBB20052640B /* Map.swift */; };
 		50AA8E2F222BEBB20052640B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA8E2E222BEBB20052640B /* GameViewController.swift */; };
 		50AA8E32222BEBB20052640B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AA8E30222BEBB20052640B /* Main.storyboard */; };
 		50AA8E34222BEBB30052640B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA8E33222BEBB30052640B /* Assets.xcassets */; };
 		50AA8E37222BEBB30052640B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AA8E35222BEBB30052640B /* LaunchScreen.storyboard */; };
+		50AA8E3F222BEC510052640B /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA8E3E222BEC510052640B /* Car.swift */; };
+		50AA8E41222BEC8C0052640B /* Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA8E40222BEC8C0052640B /* Physics.swift */; };
+		50AA8E43222BED680052640B /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA8E42222BED680052640B /* Ground.swift */; };
+		50AA8E45222BEF2F0052640B /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA8E44222BEF2F0052640B /* Wheel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		50986700222DA7FA0096FFF1 /* Springboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Springboard.swift; sourceTree = "<group>"; };
+		50986702222DAE300096FFF1 /* Accelerometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accelerometer.swift; sourceTree = "<group>"; };
 		50AA8E23222BEBB20052640B /* 306 Turbo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "306 Turbo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AA8E26222BEBB20052640B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		50AA8E28222BEBB20052640B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		50AA8E2A222BEBB20052640B /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		50AA8E2C222BEBB20052640B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		50AA8E28222BEBB20052640B /* Map.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Map.sks; sourceTree = "<group>"; };
+		50AA8E2C222BEBB20052640B /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		50AA8E2E222BEBB20052640B /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		50AA8E31222BEBB20052640B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		50AA8E33222BEBB30052640B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AA8E36222BEBB30052640B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50AA8E38222BEBB30052640B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50AA8E3E222BEC510052640B /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		50AA8E40222BEC8C0052640B /* Physics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Physics.swift; sourceTree = "<group>"; };
+		50AA8E42222BED680052640B /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
+		50AA8E44222BEF2F0052640B /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +71,14 @@
 			isa = PBXGroup;
 			children = (
 				50AA8E26222BEBB20052640B /* AppDelegate.swift */,
-				50AA8E28222BEBB20052640B /* GameScene.sks */,
-				50AA8E2A222BEBB20052640B /* Actions.sks */,
-				50AA8E2C222BEBB20052640B /* GameScene.swift */,
+				50986702222DAE300096FFF1 /* Accelerometer.swift */,
+				50AA8E40222BEC8C0052640B /* Physics.swift */,
+				50AA8E3E222BEC510052640B /* Car.swift */,
+				50AA8E44222BEF2F0052640B /* Wheel.swift */,
+				50AA8E42222BED680052640B /* Ground.swift */,
+				50986700222DA7FA0096FFF1 /* Springboard.swift */,
+				50AA8E28222BEBB20052640B /* Map.sks */,
+				50AA8E2C222BEBB20052640B /* Map.swift */,
 				50AA8E2E222BEBB20052640B /* GameViewController.swift */,
 				50AA8E30222BEBB20052640B /* Main.storyboard */,
 				50AA8E33222BEBB30052640B /* Assets.xcassets */,
@@ -132,10 +147,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				50AA8E32222BEBB20052640B /* Main.storyboard in Resources */,
-				50AA8E29222BEBB20052640B /* GameScene.sks in Resources */,
+				50AA8E29222BEBB20052640B /* Map.sks in Resources */,
 				50AA8E34222BEBB30052640B /* Assets.xcassets in Resources */,
 				50AA8E37222BEBB30052640B /* LaunchScreen.storyboard in Resources */,
-				50AA8E2B222BEBB20052640B /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,9 +160,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50AA8E2D222BEBB20052640B /* GameScene.swift in Sources */,
+				50986703222DAE300096FFF1 /* Accelerometer.swift in Sources */,
+				50AA8E43222BED680052640B /* Ground.swift in Sources */,
+				50AA8E45222BEF2F0052640B /* Wheel.swift in Sources */,
+				50AA8E2D222BEBB20052640B /* Map.swift in Sources */,
 				50AA8E2F222BEBB20052640B /* GameViewController.swift in Sources */,
+				50AA8E41222BEC8C0052640B /* Physics.swift in Sources */,
+				50AA8E3F222BEC510052640B /* Car.swift in Sources */,
 				50AA8E27222BEBB20052640B /* AppDelegate.swift in Sources */,
+				50986701222DA7FA0096FFF1 /* Springboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +321,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "net.snopia.-06-Turbo";
+				PRODUCT_BUNDLE_IDENTIFIER = net.snopia.Turbo306;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -319,7 +339,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "net.snopia.-06-Turbo";
+				PRODUCT_BUNDLE_IDENTIFIER = net.snopia.Turbo306;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
