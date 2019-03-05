@@ -12,8 +12,9 @@ class Car: SKSpriteNode {
     
     private var accelerometer: Accelerometer
     
-    private var backWheel: Wheel?
-    private var frontWheel: Wheel?
+    private var backWheel: Wheel!
+    private var frontWheel: Wheel!
+    private var chassis: SKSpriteNode!
     
     var isJumping: Bool
     
@@ -35,27 +36,21 @@ class Car: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureWheels(with scene: SKScene) {
-        backWheel = Wheel(from: self, position: .back)
-        frontWheel = Wheel(from: self, position: .front)
-        
-        scene.addChild(backWheel!)
-        scene.addChild(frontWheel!)
-    }
+    // MARK: - Init
     
     private func configureChassis(with scene: SKScene) {
         backWheel = Wheel(from: self, position: .back)
         frontWheel = Wheel(from: self, position: .front)
         
-        scene.addChild(backWheel!)
-        scene.addChild(frontWheel!)
+        scene.addChild(backWheel)
+        scene.addChild(frontWheel)
         
-        let chassis = SKSpriteNode(color: UIColor.red, size: CGSize(width: (frontWheel?.position.x ?? 0) - (backWheel?.position.x ?? 0), height: 10))
+        chassis = SKSpriteNode(color: UIColor.red, size: CGSize(width: frontWheel.position.x - backWheel.position.x, height: 10))
         chassis.position = CGPoint(x: position.x, y: position.y - size.height / 2)
         chassis.physicsBody = Physics.bodyFor(chassis: chassis)
         scene.addChild(chassis)
         
-        let backWheelJoint = SKPhysicsJointPin.joint(withBodyA: backWheel!.physicsBody!, bodyB: chassis.physicsBody!, anchor: backWheel!.position)
+        let backWheelJoint = SKPhysicsJointPin.joint(withBodyA: backWheel.physicsBody!, bodyB: chassis.physicsBody!, anchor: backWheel.position)
         let frontWheelJoint = SKPhysicsJointPin.joint(withBodyA: frontWheel!.physicsBody!, bodyB: chassis.physicsBody!, anchor: frontWheel!.position)
         
         scene.physicsWorld.add(backWheelJoint)
@@ -63,8 +58,8 @@ class Car: SKSpriteNode {
         
         let damping: CGFloat = 2
         let frenquency: CGFloat = 15
-        let backWheelSpring = SKPhysicsJointSpring.joint(withBodyA: chassis.physicsBody!, bodyB: physicsBody!, anchorA: backWheel!.position, anchorB: CGPoint(x: backWheel!.position.x, y: backWheel!.position.y - backWheel!.size.height / 2))
-        let frontWheelSpring = SKPhysicsJointSpring.joint(withBodyA: chassis.physicsBody!, bodyB: physicsBody!, anchorA: frontWheel!.position, anchorB: CGPoint(x: frontWheel!.position.x, y: frontWheel!.position.y - frontWheel!.size.height / 2))
+        let backWheelSpring = SKPhysicsJointSpring.joint(withBodyA: chassis.physicsBody!, bodyB: physicsBody!, anchorA: backWheel.position, anchorB: CGPoint(x: backWheel!.position.x, y: backWheel.position.y - backWheel!.size.height / 2))
+        let frontWheelSpring = SKPhysicsJointSpring.joint(withBodyA: chassis.physicsBody!, bodyB: physicsBody!, anchorA: frontWheel.position, anchorB: CGPoint(x: frontWheel!.position.x, y: frontWheel.position.y - frontWheel!.size.height / 2))
         
         backWheelSpring.damping = damping
         backWheelSpring.frequency = frenquency
@@ -74,12 +69,25 @@ class Car: SKSpriteNode {
         scene.physicsWorld.add(backWheelSpring)
         scene.physicsWorld.add(frontWheelSpring)
         
-        let backWheelSlide = SKPhysicsJointSliding.joint(withBodyA: chassis.physicsBody!, bodyB: physicsBody!, anchor: backWheel!.position, axis: CGVector(dx: 0, dy: 1))
-        let frontWheelSlide = SKPhysicsJointSliding.joint(withBodyA: chassis.physicsBody!, bodyB: physicsBody!, anchor: frontWheel!.position, axis: CGVector(dx: 0, dy: 1))
+        let backWheelSlide = SKPhysicsJointSliding.joint(withBodyA: chassis.physicsBody!, bodyB: physicsBody!, anchor: backWheel.position, axis: CGVector(dx: 0, dy: 1))
+        let frontWheelSlide = SKPhysicsJointSliding.joint(withBodyA: chassis.physicsBody!, bodyB: physicsBody!, anchor: frontWheel.position, axis: CGVector(dx: 0, dy: 1))
         
         scene.physicsWorld.add(backWheelSlide)
         scene.physicsWorld.add(frontWheelSlide)
     }
+    
+    func remove() {
+        for joint in chassis.physicsBody!.joints {
+            scene?.physicsWorld.remove(joint)
+        }
+        
+        backWheel.removeFromParent()
+        frontWheel.removeFromParent()
+        chassis.removeFromParent()
+        removeFromParent()
+    }
+        
+    // MARK: - Actions
     
     func moveForward() {
         backWheel?.rotate()
@@ -92,7 +100,12 @@ class Car: SKSpriteNode {
     }
     
     func startBreaking() {
+        stopMoving()
         frontWheel?.physicsBody?.angularDamping = 100
+    }
+    
+    func stopBreaking() {
+        frontWheel?.physicsBody?.angularDamping = 0
     }
     
     func jump() {
