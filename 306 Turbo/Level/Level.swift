@@ -19,7 +19,16 @@ enum LevelState {
 
 class Level: SKScene {
     
+    private var background: SKSpriteNode?
+    private var middlePlan: SKSpriteNode?
+    private var ambientLight: SKLightNode?
     private var state: LevelState = .start
+    
+    var backgroundTexture: SKTexture?
+    var middlePlanTexture: SKTexture?
+    var groundTexture: SKTexture?
+    var lightColor: UIColor?
+    var ambientLightColor: UIColor?
     
     var car: Car?
     var ground: Ground!
@@ -29,6 +38,8 @@ class Level: SKScene {
         configureGround()
         configureSpringboard()
         configureCamera()
+        configureTextures()
+        configureLight()
         configureContact()
         
         setStartState()
@@ -68,6 +79,9 @@ class Level: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         updateCameraPosition()
+        background?.position = camera?.position ?? CGPoint.zero
+        let y = camera?.position.y ?? 0
+        ambientLight?.position = CGPoint(x: camera?.position.x ?? 0, y: y)
         
         if let car = car, car.position.x > 5000 && car.position.x < 5100 {
             car.jump()
@@ -150,19 +164,40 @@ class Level: SKScene {
         state = .end
     }
     
-    // MARK: - Animation
+    // MARK: - UI
     
-    private func endAnimation() {
-        let slowMotion = SKAction.customAction(withDuration: 0.2) { (node, duration) in
-            self.physicsWorld.speed = 0.5
+    private func configureTextures() {
+        if let backgroundTexture = backgroundTexture {
+            let cameraScaleX = camera?.xScale ?? 1
+            let cameraScaleY = camera?.yScale ?? 1
+            var backgroundSize = CGSize(width: size.width * cameraScaleX, height: size.height * cameraScaleY)
+            
+            if backgroundSize.width > backgroundSize.height {
+                backgroundSize = CGSize(width: backgroundSize.width, height: backgroundSize.width)
+            } else {
+                backgroundSize = CGSize(width: backgroundSize.height, height: backgroundSize.height)
+            }
+            
+            background = SKSpriteNode(texture: backgroundTexture, color: UIColor.clear, size: backgroundSize)
+            background?.zPosition = -1000
+            
+            addChild(background!)
         }
-        let wait = SKAction.wait(forDuration: 2)
-        let slowMotionUp = SKAction.customAction(withDuration: 0.2) { (node, duration) in
-            self.physicsWorld.speed = 1
+    }
+    
+    private func configureLight() {
+        guard let ambientLightColor = ambientLightColor, let lightColor = lightColor else {
+            return
         }
-        let slowMotionSequence = SKAction.sequence([slowMotion, wait, slowMotionUp])
         
-        run(slowMotionSequence)
+        ambientLight = SKLightNode()
+        ambientLight?.position = CGPoint(x: 0, y: size.height * (camera?.yScale ?? 1))
+        ambientLight?.falloff = 0.1
+        ambientLight?.ambientColor = ambientLightColor
+        //ambientLight?.lightColor = lightColor
+        ambientLight?.categoryBitMask = Light.Masks.ambient
+        
+        addChild(ambientLight!)
     }
     
 }

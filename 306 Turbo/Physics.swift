@@ -56,6 +56,7 @@ class Physics: NSObject {
 //        physicBody.mass = 0.1
         physicsBody.restitution = 0
         physicsBody.friction = 1
+        physicsBody.linearDamping = 0
         physicsBody.categoryBitMask = Masks.wheel
         physicsBody.collisionBitMask = Masks.ground | Masks.springboard
         physicsBody.contactTestBitMask = Masks.ground
@@ -64,7 +65,7 @@ class Physics: NSObject {
     }
     
     static func bodyFor(ground: SKSpriteNode) -> SKPhysicsBody {
-        let physicsBody = SKPhysicsBody(rectangleOf: ground.size)
+        let physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: ground.size.width, height: ground.size.height - 50))
         
         physicsBody.isDynamic = false
         physicsBody.affectedByGravity = false
@@ -88,8 +89,8 @@ class Physics: NSObject {
         physicsBody.mass = 100
         physicsBody.restitution = 0
         physicsBody.friction = 1
-        //        physicsBody.linearDamping = 30
-        //        physicsBody.angularDamping = 30
+//        physicsBody.linearDamping = 30
+//        physicsBody.angularDamping = 30
         physicsBody.categoryBitMask = Masks.springboard
         physicsBody.collisionBitMask = Masks.car | Masks.wheel | Masks.ground
         

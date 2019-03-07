@@ -24,7 +24,7 @@ class GameViewController: UIViewController {
             return
         }
         
-        if let scene = SKScene(fileNamed: "Level") {
+        if let scene = SKScene(fileNamed: "Campagne") {
             scene.scaleMode = .aspectFill
             view.presentScene(scene)
         }

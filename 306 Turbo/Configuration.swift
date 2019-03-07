@@ -18,7 +18,8 @@ enum Place: Int {
 
 enum Time: Int {
     
-    case day
+    case morning
+    case afternoon
     case night
     
 }
@@ -40,7 +41,7 @@ class Configuration: NSObject, NSCoding {
     
     override init() {
         place = .campagne
-        time = .day
+        time = .morning
         wheelFriction = 0.1
         boost = 0
     }

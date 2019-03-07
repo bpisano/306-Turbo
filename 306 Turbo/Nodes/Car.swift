@@ -26,6 +26,7 @@ class Car: SKSpriteNode {
         
         self.position = position
         self.physicsBody = Physics.bodyFor(car: self)
+        self.lightingBitMask = Light.Masks.ambient
         
         scene.addChild(self)
         
@@ -90,22 +91,23 @@ class Car: SKSpriteNode {
     // MARK: - Actions
     
     func moveForward() {
-        backWheel?.rotate()
-        frontWheel?.rotate()
+        backWheel.rotate()
+        frontWheel.rotate()
     }
     
     func stopMoving() {
-        backWheel?.stopRotating()
-        frontWheel?.stopRotating()
+        backWheel.stopRotating()
+        frontWheel.stopRotating()
     }
     
     func startBreaking() {
         stopMoving()
-        frontWheel?.physicsBody?.angularDamping = 100
+        frontWheel.physicsBody?.angularDamping = 100
     }
     
     func stopBreaking() {
-        frontWheel?.physicsBody?.angularDamping = 0
+        backWheel.physicsBody?.angularDamping = 0
+        frontWheel.physicsBody?.angularDamping = 0
     }
     
     func jump() {

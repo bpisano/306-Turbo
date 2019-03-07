@@ -11,10 +11,11 @@ import SpriteKit
 class Ground: SKSpriteNode {
     
     init() {
-        super.init(texture: nil, color: UIColor.lightGray, size: CGSize(width: 999999, height: 100))
+        super.init(texture: nil, color: UIColor.lightGray, size: CGSize(width: 999999, height: 1000))
         
-        self.position = CGPoint.zero//CGPoint(x: size.width / 2, y: 0)
+        self.position = CGPoint(x: size.width / 2 - UIScreen.main.bounds.width, y: -size.height / 2)
         self.physicsBody = Physics.bodyFor(ground: self)
+        self.lightingBitMask = Light.Masks.ambient
     }
     
     required init?(coder aDecoder: NSCoder) {

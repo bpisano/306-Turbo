@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		508DD1F922319C8E0078D318 /* Campagne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508DD1F822319C8E0078D318 /* Campagne.swift */; };
+		508DD1FB22319D090078D318 /* Campagne.sks in Resources */ = {isa = PBXBuildFile; fileRef = 508DD1FA22319D090078D318 /* Campagne.sks */; };
+		508DD1FD2231A6840078D318 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508DD1FC2231A6840078D318 /* Light.swift */; };
 		50986701222DA7FA0096FFF1 /* Springboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50986700222DA7FA0096FFF1 /* Springboard.swift */; };
 		50986703222DAE300096FFF1 /* Accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50986702222DAE300096FFF1 /* Accelerometer.swift */; };
 		50AA8E27222BEBB20052640B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA8E26222BEBB20052640B /* AppDelegate.swift */; };
@@ -25,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		508DD1F822319C8E0078D318 /* Campagne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campagne.swift; sourceTree = "<group>"; };
+		508DD1FA22319D090078D318 /* Campagne.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Campagne.sks; sourceTree = "<group>"; };
+		508DD1FC2231A6840078D318 /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		50986700222DA7FA0096FFF1 /* Springboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Springboard.swift; sourceTree = "<group>"; };
 		50986702222DAE300096FFF1 /* Accelerometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accelerometer.swift; sourceTree = "<group>"; };
 		50AA8E23222BEBB20052640B /* 306 Turbo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "306 Turbo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +82,7 @@
 			children = (
 				50AA8E26222BEBB20052640B /* AppDelegate.swift */,
 				50986702222DAE300096FFF1 /* Accelerometer.swift */,
+				508DD1FC2231A6840078D318 /* Light.swift */,
 				50AA8E40222BEC8C0052640B /* Physics.swift */,
 				50FD8CFE222EA7EA00546D9D /* Configuration.swift */,
 				50FD8CFC222EA75E00546D9D /* Nodes */,
@@ -106,6 +113,8 @@
 			children = (
 				50AA8E28222BEBB20052640B /* Level.sks */,
 				50AA8E2C222BEBB20052640B /* Level.swift */,
+				508DD1FA22319D090078D318 /* Campagne.sks */,
+				508DD1F822319C8E0078D318 /* Campagne.swift */,
 			);
 			path = Level;
 			sourceTree = "<group>";
@@ -168,6 +177,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508DD1FB22319D090078D318 /* Campagne.sks in Resources */,
 				50AA8E32222BEBB20052640B /* Main.storyboard in Resources */,
 				50AA8E29222BEBB20052640B /* Level.sks in Resources */,
 				50AA8E34222BEBB30052640B /* Assets.xcassets in Resources */,
@@ -183,11 +193,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				50986703222DAE300096FFF1 /* Accelerometer.swift in Sources */,
+				508DD1F922319C8E0078D318 /* Campagne.swift in Sources */,
 				50AA8E43222BED680052640B /* Ground.swift in Sources */,
 				50AA8E45222BEF2F0052640B /* Wheel.swift in Sources */,
 				50AA8E2D222BEBB20052640B /* Level.swift in Sources */,
 				50AA8E2F222BEBB20052640B /* GameViewController.swift in Sources */,
 				50AA8E41222BEC8C0052640B /* Physics.swift in Sources */,
+				508DD1FD2231A6840078D318 /* Light.swift in Sources */,
 				50AA8E3F222BEC510052640B /* Car.swift in Sources */,
 				50AA8E27222BEBB20052640B /* AppDelegate.swift in Sources */,
 				50C12615222EA1E5000EF094 /* Coin.swift in Sources */,
