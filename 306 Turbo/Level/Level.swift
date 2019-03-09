@@ -27,7 +27,6 @@ class Level: SKScene {
     var backgroundTexture: SKTexture?
     var middlePlanTexture: SKTexture?
     var groundTexture: SKTexture?
-    var lightColor: UIColor?
     var ambientLightColor: UIColor?
     
     var car: Car?
@@ -35,6 +34,8 @@ class Level: SKScene {
     var springboard: Springboard!
         
     override func didMove(to view: SKView) {
+        Configuration.shared.currentConfiguration?.incrementTime()
+        
         configureGround()
         configureSpringboard()
         configureCamera()
@@ -101,7 +102,7 @@ class Level: SKScene {
         case .driving:
             car.moveForward()
         case .end:
-            setStartState()
+            restart()
         }
     }
     
@@ -140,7 +141,6 @@ class Level: SKScene {
     // MARK: - States
     
     func setStartState() {
-        car?.remove()
         car = Car(position: CGPoint(x: 0, y: 200), scene: self)
         
         camera?.childNode(withName: "label")?.removeFromParent()
@@ -162,6 +162,15 @@ class Level: SKScene {
         label.name = "label"
         camera?.addChild(label)
         state = .end
+    }
+    
+    func restart() {
+        guard let scene = SKScene(fileNamed: name ?? "") else {
+            return
+        }
+        
+        scene.scaleMode = .aspectFill
+        view?.presentScene(scene)
     }
     
     // MARK: - UI
@@ -186,7 +195,7 @@ class Level: SKScene {
     }
     
     private func configureLight() {
-        guard let ambientLightColor = ambientLightColor, let lightColor = lightColor else {
+        guard let ambientLightColor = ambientLightColor else {
             return
         }
         
@@ -194,7 +203,6 @@ class Level: SKScene {
         ambientLight?.position = CGPoint(x: 0, y: size.height * (camera?.yScale ?? 1))
         ambientLight?.falloff = 0.1
         ambientLight?.ambientColor = ambientLightColor
-        //ambientLight?.lightColor = lightColor
         ambientLight?.categoryBitMask = Light.Masks.ambient
         
         addChild(ambientLight!)

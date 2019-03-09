@@ -18,6 +18,10 @@ class Car: SKSpriteNode {
     
     var isJumping: Bool
     
+    deinit {
+        accelerometer.stop()
+    }
+    
     init(position: CGPoint, scene: SKScene) {
         self.accelerometer = Accelerometer()
         self.isJumping = false
