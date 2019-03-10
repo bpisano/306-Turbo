@@ -203,7 +203,7 @@ class Level: SKScene {
     }
     
     private func configureSun() {
-        guard let background = background/*, Configuration.shared.currentConfiguration?.time == .afternoon*/ else {
+        guard let background = background, Configuration.shared.currentConfiguration?.time == .afternoon else {
             return
         }
         
