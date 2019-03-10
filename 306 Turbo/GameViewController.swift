@@ -25,13 +25,17 @@ class GameViewController: UIViewController {
         }
         
         if let scene = SKScene(fileNamed: "Campagne") {
-            scene.scaleMode = .aspectFill
+            scene.scaleMode = .resizeFill
             view.presentScene(scene)
         }
         
         view.ignoresSiblingOrder = true
         view.showsFPS = true
         view.showsNodeCount = true
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 
 }

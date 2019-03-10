@@ -65,7 +65,7 @@ class Physics: NSObject {
     }
     
     static func bodyFor(ground: SKSpriteNode) -> SKPhysicsBody {
-        let physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: ground.size.width, height: ground.size.height - 50))
+        let physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: ground.size.width, height: ground.size.height - 140))
         
         physicsBody.isDynamic = false
         physicsBody.affectedByGravity = false

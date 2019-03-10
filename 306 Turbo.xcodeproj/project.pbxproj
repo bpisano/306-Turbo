@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500B30BE2234412F00001E60 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B30BD2234412F00001E60 /* Background.swift */; };
 		508DD1F922319C8E0078D318 /* Campagne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508DD1F822319C8E0078D318 /* Campagne.swift */; };
 		508DD1FB22319D090078D318 /* Campagne.sks in Resources */ = {isa = PBXBuildFile; fileRef = 508DD1FA22319D090078D318 /* Campagne.sks */; };
 		508DD1FD2231A6840078D318 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508DD1FC2231A6840078D318 /* Light.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		500B30BD2234412F00001E60 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		508DD1F822319C8E0078D318 /* Campagne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campagne.swift; sourceTree = "<group>"; };
 		508DD1FA22319D090078D318 /* Campagne.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Campagne.sks; sourceTree = "<group>"; };
 		508DD1FC2231A6840078D318 /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				508DD1FC2231A6840078D318 /* Light.swift */,
 				50AA8E40222BEC8C0052640B /* Physics.swift */,
 				50FD8CFE222EA7EA00546D9D /* Configuration.swift */,
+				500B30BD2234412F00001E60 /* Background.swift */,
 				50FD8CFC222EA75E00546D9D /* Nodes */,
 				50FD8CFD222EA76600546D9D /* Level */,
 				50AA8E2E222BEBB20052640B /* GameViewController.swift */,
@@ -189,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50986703222DAE300096FFF1 /* Accelerometer.swift in Sources */,
+				500B30BE2234412F00001E60 /* Background.swift in Sources */,
 				508DD1F922319C8E0078D318 /* Campagne.swift in Sources */,
 				50AA8E43222BED680052640B /* Ground.swift in Sources */,
 				50AA8E45222BEF2F0052640B /* Wheel.swift in Sources */,

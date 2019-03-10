@@ -27,6 +27,7 @@ class Wheel: SKSpriteNode {
         } else {
             self.position = CGPoint(x: car.position.x - car.size.width / 2 + wheelSize.width / 2 + 333, y: car.position.y - car.size.height / 2)
         }
+        self.zPosition = car.zPosition
         self.physicsBody = Physics.bodyFor(wheel: self)
     }
     

@@ -19,28 +19,40 @@ enum LevelState {
 
 class Level: SKScene {
     
+    private let leftCameraOffset: CGFloat = 50
+    private let bottomCameraOffset: CGFloat = -50
+    
     private var background: SKSpriteNode?
     private var middlePlan: SKSpriteNode?
     private var ambientLight: SKLightNode?
     private var state: LevelState = .start
-    
+        
     var backgroundTexture: SKTexture?
     var middlePlanTexture: SKTexture?
     var groundTexture: SKTexture?
+    var lightColor: UIColor?
     var ambientLightColor: UIColor?
     
     var car: Car?
     var ground: Ground!
     var springboard: Springboard!
+    
+    var realSize: CGSize {
+        guard let camera = camera else {
+            return size
+        }
+        
+        return CGSize(width: size.width * camera.xScale, height: size.height * camera.yScale)
+    }
         
     override func didMove(to view: SKView) {
-        Configuration.shared.currentConfiguration?.incrementTime()
-        
         configureGround()
         configureSpringboard()
+        configureCar()
         configureCamera()
         configureTextures()
         configureLight()
+        configureSun()
         configureContact()
         
         setStartState()
@@ -49,7 +61,7 @@ class Level: SKScene {
     // MARK: - Init
     
     private func configureGround() {
-        ground = Ground()
+        ground = Ground(from: self)
         addChild(ground)
     }
     
@@ -66,7 +78,7 @@ class Level: SKScene {
     
     private func configureCamera() {
         let camera = SKCameraNode()
-        camera.setScale(1.5)
+        camera.setScale(3)
 
         self.camera = camera
         addChild(camera)
@@ -81,8 +93,7 @@ class Level: SKScene {
     override func update(_ currentTime: TimeInterval) {
         updateCameraPosition()
         background?.position = camera?.position ?? CGPoint.zero
-        let y = camera?.position.y ?? 0
-        ambientLight?.position = CGPoint(x: camera?.position.x ?? 0, y: y)
+        ambientLight?.position = camera?.position ?? CGPoint.zero
         
         if let car = car, car.position.x > 5000 && car.position.x < 5100 {
             car.jump()
@@ -118,31 +129,21 @@ class Level: SKScene {
     
     // MARK: - Camera
     
-    private func defaultCameraPosition() -> CGPoint {
-        guard let car = car else {
-            return CGPoint.zero
-        }
-        
-        return CGPoint(x: car.position.x + size.width / 2 - car.size.width / 2 - 20, y: car.position.y + size.height / 2 - car.size.height - 100)
-    }
-    
-    private func carCameraPosition() -> CGPoint {
-        guard let car = car else {
-            return CGPoint.zero
-        }
-        
-        return car.position
-    }
-    
     private func updateCameraPosition() {
-        camera?.position = defaultCameraPosition()
+        guard let car = car else {
+            return
+        }
+        
+        let x = car.position.x + realSize.width / 2 - car.size.width / 2 - leftCameraOffset
+        let y = car.position.y + realSize.height / 2 - car.size.height / 2 - ground.size.height - bottomCameraOffset
+        let cameraPosition = CGPoint(x: x, y: y)
+        
+        camera?.position = cameraPosition
     }
     
     // MARK: - States
     
     func setStartState() {
-        car = Car(position: CGPoint(x: 0, y: 200), scene: self)
-        
         camera?.childNode(withName: "label")?.removeFromParent()
         let label = SKLabelNode(text: "Start")
         label.name = "label"
@@ -169,29 +170,21 @@ class Level: SKScene {
             return
         }
         
-        scene.scaleMode = .aspectFill
+        scene.scaleMode = .resizeFill
         view?.presentScene(scene)
+        
+        Configuration.shared.currentConfiguration?.incrementTime()
     }
     
     // MARK: - UI
     
     private func configureTextures() {
-        if let backgroundTexture = backgroundTexture {
-            let cameraScaleX = camera?.xScale ?? 1
-            let cameraScaleY = camera?.yScale ?? 1
-            var backgroundSize = CGSize(width: size.width * cameraScaleX, height: size.height * cameraScaleY)
-            
-            if backgroundSize.width > backgroundSize.height {
-                backgroundSize = CGSize(width: backgroundSize.width, height: backgroundSize.width)
-            } else {
-                backgroundSize = CGSize(width: backgroundSize.height, height: backgroundSize.height)
-            }
-            
-            background = SKSpriteNode(texture: backgroundTexture, color: UIColor.clear, size: backgroundSize)
-            background?.zPosition = -1000
-            
-            addChild(background!)
+        guard let backgroundTexture = backgroundTexture else {
+            return
         }
+        
+        background = Background(scene: self, texture: backgroundTexture)
+        addChild(background!)
     }
     
     private func configureLight() {
@@ -200,12 +193,29 @@ class Level: SKScene {
         }
         
         ambientLight = SKLightNode()
-        ambientLight?.position = CGPoint(x: 0, y: size.height * (camera?.yScale ?? 1))
+        ambientLight?.position = camera?.position ?? CGPoint.zero
         ambientLight?.falloff = 0.1
+        ambientLight?.lightColor = lightColor ?? UIColor.white
         ambientLight?.ambientColor = ambientLightColor
         ambientLight?.categoryBitMask = Light.Masks.ambient
         
         addChild(ambientLight!)
+    }
+    
+    private func configureSun() {
+        guard let background = background/*, Configuration.shared.currentConfiguration?.time == .afternoon*/ else {
+            return
+        }
+        
+        let sunSize = CGSize(width: 652, height: 652)
+        let sunPosition = CGPoint(x: 0, y: -realSize.height / 2 + ground.size.height / 2 + sunSize.height / 2)
+        let sunTexture = SKTexture(imageNamed: "Sun")
+        let sun = SKSpriteNode(texture: sunTexture, color: UIColor.clear, size: sunSize)
+        
+        sun.position = sunPosition
+        sun.zPosition = 10
+        
+        background.addChild(sun)
     }
     
 }

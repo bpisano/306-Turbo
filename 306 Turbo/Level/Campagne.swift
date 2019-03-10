@@ -31,10 +31,12 @@ class Campagne: Level {
             ambientLightColor = UIColor.white
         case .afternoon:
             backgroundTexture = SKTexture(imageNamed: "Campagne_background_afternoon")
-            ambientLightColor = UIColor(red: 245/255, green: 98/255, blue: 23/255, alpha: 1)
+            lightColor = UIColor(white: 0.1, alpha: 1)
+            ambientLightColor = UIColor(red: 105/255, green: 45/255, blue: 63/255, alpha: 1)
         case .night:
             backgroundTexture = SKTexture(imageNamed: "Campagne_background_night")
-            ambientLightColor = UIColor.white.withAlphaComponent(0)
+            lightColor = UIColor.white.withAlphaComponent(0.5)
+            ambientLightColor = UIColor.black
         }
     }
     

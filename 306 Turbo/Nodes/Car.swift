@@ -29,6 +29,7 @@ class Car: SKSpriteNode {
         super.init(texture: SKTexture(imageNamed: "Car"), color: UIColor.white, size: CGSize(width: 436, height: 134))
         
         self.position = position
+        self.zPosition = 100
         self.physicsBody = Physics.bodyFor(car: self)
         self.lightingBitMask = Light.Masks.ambient
         
@@ -52,6 +53,7 @@ class Car: SKSpriteNode {
         
         chassis = SKSpriteNode(color: UIColor.red, size: CGSize(width: frontWheel.position.x - backWheel.position.x, height: 10))
         chassis.position = CGPoint(x: position.x, y: position.y - size.height / 2)
+        chassis.zPosition = zPosition
         chassis.physicsBody = Physics.bodyFor(chassis: chassis)
         scene.addChild(chassis)
         
