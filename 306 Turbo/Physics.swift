@@ -32,6 +32,7 @@ class Physics: NSObject {
         physicsBody.friction = 0.5
         physicsBody.categoryBitMask = Masks.car
         physicsBody.collisionBitMask = Masks.ground | Masks.springboard
+        physicsBody.contactTestBitMask = Masks.ground
         
         return physicsBody
     }

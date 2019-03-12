@@ -17,6 +17,7 @@ class Car: SKSpriteNode {
     private var chassis: SKSpriteNode!
     
     var isJumping: Bool
+    var haveBoost: Bool
     
     deinit {
         accelerometer.stop()
@@ -25,6 +26,7 @@ class Car: SKSpriteNode {
     init(position: CGPoint, scene: SKScene) {
         self.accelerometer = Accelerometer()
         self.isJumping = false
+        self.haveBoost = true
         
         super.init(texture: SKTexture(imageNamed: "Car"), color: UIColor.white, size: CGSize(width: 436, height: 134))
         
@@ -130,6 +132,13 @@ class Car: SKSpriteNode {
     func stopJump() {
         isJumping = false
         accelerometer.stop()
+    }
+    
+    func boost() {
+        haveBoost = false
+        
+        let boostAction = SKAction.applyForce(CGVector(dx: 1000, dy: 0), duration: 10)
+        run(boostAction)
     }
     
 }

@@ -22,10 +22,14 @@ class Level: SKScene {
     private let leftCameraOffset: CGFloat = 50
     private let bottomCameraOffset: CGFloat = -50
     
+    private var currentUI: UIProtocol?
     private var background: SKSpriteNode?
     private var middlePlan: SKSpriteNode?
     private var ambientLight: SKLightNode?
     private var state: LevelState = .start
+    
+    private var distance: Int = 0
+    private var height: Int = 0
         
     var backgroundTexture: SKTexture?
     var middlePlanTexture: SKTexture?
@@ -55,7 +59,7 @@ class Level: SKScene {
         configureSun()
         configureContact()
         
-        setStartState()
+        set(state: .start)
     }
     
     // MARK: - Init
@@ -91,12 +95,19 @@ class Level: SKScene {
     // MARK: - Game Engine
     
     override func update(_ currentTime: TimeInterval) {
+        currentUI?.update(from: self)
+        
         updateCameraPosition()
         background?.position = camera?.position ?? CGPoint.zero
         ambientLight?.position = camera?.position ?? CGPoint.zero
         
-        if let car = car, car.position.x > 5000 && car.position.x < 5100 {
+        if let car = car, car.position.x > springboard.position.x + springboard.size.width / 2 && !car.isJumping && state == .driving {
             car.jump()
+        }
+        
+        if let car = car, car.isJumping {
+            let currentHeight = Maths.meterPositionFrom(position: car.position, springBoardPosition: springboard.position).y
+            height = max(height, Int(currentHeight))
         }
     }
     
@@ -109,11 +120,22 @@ class Level: SKScene {
         
         switch state {
         case .start:
-            setDrivingState()
+            set(state: .driving)
         case .driving:
             car.moveForward()
         case .end:
             restart()
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {
+            return
+        }
+        
+        if let car = car, touch.force > 4 && state == .driving && car.haveBoost {
+            TapticEngine.feedback(style: .light)
+            car.boost()
         }
     }
     
@@ -143,26 +165,32 @@ class Level: SKScene {
     
     // MARK: - States
     
-    func setStartState() {
-        camera?.childNode(withName: "label")?.removeFromParent()
-        let label = SKLabelNode(text: "Start")
-        label.name = "label"
-        camera?.addChild(label)
+    func set(state newState: LevelState) {
+        switch state {
+        case .start:
+            setStartState()
+        case .driving:
+            setDrivingState()
+        case .end:
+            setEndState()
+        }
         
-        state = .start
+        state = newState
+        configureUI()
     }
     
-    func setDrivingState() {
-        camera?.childNode(withName: "label")?.removeFromParent()
+    private func setStartState() {
         
-        state = .driving
     }
     
-    func setEndState() {
+    private func setDrivingState() {
+        
+    }
+    
+    private func setEndState() {
         let label = SKLabelNode(text: "End")
         label.name = "label"
         camera?.addChild(label)
-        state = .end
     }
     
     func restart() {
@@ -177,6 +205,24 @@ class Level: SKScene {
     }
     
     // MARK: - UI
+    
+    private func configureUI() {
+        currentUI?.remove()
+        
+        switch state {
+        case .start:
+            currentUI = StartUI(scene: self)
+        case .driving:
+            currentUI = DriveUI(scene: self)
+        case .end:
+            currentUI = EndUI(distance: distance, height: height)
+            Configuration.shared.currentConfiguration?.update(distance: distance, height: height)
+        }
+        
+        if let currentUI = currentUI {
+            camera?.addChild(currentUI.node)
+        }
+    }
     
     private func configureTextures() {
         guard let backgroundTexture = backgroundTexture else {
@@ -226,12 +272,20 @@ extension Level: SKPhysicsContactDelegate {
         let bodyA = contact.bodyA
         let bodyB = contact.bodyB
         
-        if (bodyA.categoryBitMask | bodyB.categoryBitMask == Physics.Masks.ground | Physics.Masks.wheel ||
-            bodyA.categoryBitMask | bodyB.categoryBitMask == Physics.Masks.ground | Physics.Masks.car) && car?.isJumping ?? false {
+        if bodyA.categoryBitMask | bodyB.categoryBitMask == Physics.Masks.ground | Physics.Masks.wheel && car?.isJumping ?? false {
+            if let car = car {
+                distance = Int(Maths.meterPositionFrom(position: car.position, springBoardPosition: springboard.position).x)
+            }
+                        
+            TapticEngine.feedback(style: .medium)
+            
             car?.stopJump()
             car?.stopMoving()
             car?.startBreaking()
-            setEndState()
+            
+            set(state: .end)
+        } else if bodyA.categoryBitMask | bodyB.categoryBitMask == Physics.Masks.ground | Physics.Masks.car && car?.isJumping ?? false {
+            TapticEngine.feedback(style: .heavy)
         }
     }
     

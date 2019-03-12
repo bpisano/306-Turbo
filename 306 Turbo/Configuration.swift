@@ -73,6 +73,9 @@ class Configuration: NSObject, NSCoding {
     var wheelFriction: CGFloat
     var boost: CGFloat
     
+    var bestDistance: Int
+    var bestHeight: Int
+    
     // MARK: - Init
     
     override init() {
@@ -81,6 +84,8 @@ class Configuration: NSObject, NSCoding {
         timeBeforeNextTime = 0
         wheelFriction = 0.1
         boost = 0
+        bestDistance = 0
+        bestHeight = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,6 +94,8 @@ class Configuration: NSObject, NSCoding {
         timeBeforeNextTime = aDecoder.decodeInteger(forKey: "timeBeforeNextTime")
         wheelFriction = aDecoder.decodeObject(forKey: "wheelFriction") as! CGFloat
         boost = aDecoder.decodeObject(forKey: "boost") as! CGFloat
+        bestDistance = aDecoder.decodeInteger(forKey: "bestDistance")
+        bestHeight = aDecoder.decodeInteger(forKey: "bestHeight")
     }
     
     func encode(with aCoder: NSCoder) {
@@ -97,6 +104,8 @@ class Configuration: NSObject, NSCoding {
         aCoder.encode(timeBeforeNextTime, forKey: "timeBeforeNextTime")
         aCoder.encode(wheelFriction, forKey: "wheelFriction")
         aCoder.encode(boost, forKey: "boost")
+        aCoder.encode(bestDistance, forKey: "bestDistance")
+        aCoder.encode(bestHeight, forKey: "bestHeight")
     }
     
     // MARK: - Configuration Management
@@ -147,6 +156,13 @@ class Configuration: NSObject, NSCoding {
             time = time.next
             timeBeforeNextTime = 0
         }
+        
+        Configuration.saveConfiguration()
+    }
+    
+    func update(distance: Int, height: Int) {
+        bestDistance = max(bestDistance, distance)
+        bestHeight = max(bestHeight, height)
         
         Configuration.saveConfiguration()
     }

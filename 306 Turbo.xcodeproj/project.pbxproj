@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		500B30BE2234412F00001E60 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B30BD2234412F00001E60 /* Background.swift */; };
+		50171C312236DEFB00C1CE64 /* DriveUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50171C302236DEFB00C1CE64 /* DriveUI.swift */; };
+		50171C332236E32F00C1CE64 /* UIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50171C322236E32F00C1CE64 /* UIProtocol.swift */; };
+		50171C362236EAA700C1CE64 /* StartUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50171C352236EAA700C1CE64 /* StartUI.swift */; };
+		501CF1D122382E6E00CA6792 /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501CF1D022382E6E00CA6792 /* TapticEngine.swift */; };
+		501CF1D3223832BE00CA6792 /* EndUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501CF1D2223832BE00CA6792 /* EndUI.swift */; };
+		501CF1D5223837B100CA6792 /* Maths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501CF1D4223837B100CA6792 /* Maths.swift */; };
 		508DD1F922319C8E0078D318 /* Campagne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508DD1F822319C8E0078D318 /* Campagne.swift */; };
 		508DD1FB22319D090078D318 /* Campagne.sks in Resources */ = {isa = PBXBuildFile; fileRef = 508DD1FA22319D090078D318 /* Campagne.sks */; };
 		508DD1FD2231A6840078D318 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508DD1FC2231A6840078D318 /* Light.swift */; };
@@ -29,6 +35,12 @@
 
 /* Begin PBXFileReference section */
 		500B30BD2234412F00001E60 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		50171C302236DEFB00C1CE64 /* DriveUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveUI.swift; sourceTree = "<group>"; };
+		50171C322236E32F00C1CE64 /* UIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProtocol.swift; sourceTree = "<group>"; };
+		50171C352236EAA700C1CE64 /* StartUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUI.swift; sourceTree = "<group>"; };
+		501CF1D022382E6E00CA6792 /* TapticEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticEngine.swift; sourceTree = "<group>"; };
+		501CF1D2223832BE00CA6792 /* EndUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndUI.swift; sourceTree = "<group>"; };
+		501CF1D4223837B100CA6792 /* Maths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maths.swift; sourceTree = "<group>"; };
 		508DD1F822319C8E0078D318 /* Campagne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campagne.swift; sourceTree = "<group>"; };
 		508DD1FA22319D090078D318 /* Campagne.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Campagne.sks; sourceTree = "<group>"; };
 		508DD1FC2231A6840078D318 /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
@@ -61,6 +73,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50171C2F2236DEAA00C1CE64 /* Scene Accessories */ = {
+			isa = PBXGroup;
+			children = (
+				500B30BD2234412F00001E60 /* Background.swift */,
+				50171C342236E4AE00C1CE64 /* UI */,
+			);
+			path = "Scene Accessories";
+			sourceTree = "<group>";
+		};
+		50171C342236E4AE00C1CE64 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				50171C352236EAA700C1CE64 /* StartUI.swift */,
+				50171C302236DEFB00C1CE64 /* DriveUI.swift */,
+				501CF1D2223832BE00CA6792 /* EndUI.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		50AA8E1A222BEBB20052640B = {
 			isa = PBXGroup;
 			children = (
@@ -81,11 +112,14 @@
 			isa = PBXGroup;
 			children = (
 				50AA8E26222BEBB20052640B /* AppDelegate.swift */,
+				501CF1D022382E6E00CA6792 /* TapticEngine.swift */,
+				501CF1D4223837B100CA6792 /* Maths.swift */,
 				50986702222DAE300096FFF1 /* Accelerometer.swift */,
 				508DD1FC2231A6840078D318 /* Light.swift */,
 				50AA8E40222BEC8C0052640B /* Physics.swift */,
 				50FD8CFE222EA7EA00546D9D /* Configuration.swift */,
-				500B30BD2234412F00001E60 /* Background.swift */,
+				50171C322236E32F00C1CE64 /* UIProtocol.swift */,
+				50171C2F2236DEAA00C1CE64 /* Scene Accessories */,
 				50FD8CFC222EA75E00546D9D /* Nodes */,
 				50FD8CFD222EA76600546D9D /* Level */,
 				50AA8E2E222BEBB20052640B /* GameViewController.swift */,
@@ -191,7 +225,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50171C362236EAA700C1CE64 /* StartUI.swift in Sources */,
 				50986703222DAE300096FFF1 /* Accelerometer.swift in Sources */,
+				50171C312236DEFB00C1CE64 /* DriveUI.swift in Sources */,
+				501CF1D5223837B100CA6792 /* Maths.swift in Sources */,
 				500B30BE2234412F00001E60 /* Background.swift in Sources */,
 				508DD1F922319C8E0078D318 /* Campagne.swift in Sources */,
 				50AA8E43222BED680052640B /* Ground.swift in Sources */,
@@ -199,12 +236,15 @@
 				50AA8E2D222BEBB20052640B /* Level.swift in Sources */,
 				50AA8E2F222BEBB20052640B /* GameViewController.swift in Sources */,
 				50AA8E41222BEC8C0052640B /* Physics.swift in Sources */,
+				501CF1D122382E6E00CA6792 /* TapticEngine.swift in Sources */,
 				508DD1FD2231A6840078D318 /* Light.swift in Sources */,
 				50AA8E3F222BEC510052640B /* Car.swift in Sources */,
+				50171C332236E32F00C1CE64 /* UIProtocol.swift in Sources */,
 				50AA8E27222BEBB20052640B /* AppDelegate.swift in Sources */,
 				50C12615222EA1E5000EF094 /* Coin.swift in Sources */,
 				50986701222DA7FA0096FFF1 /* Springboard.swift in Sources */,
 				50FD8CFF222EA7EA00546D9D /* Configuration.swift in Sources */,
+				501CF1D3223832BE00CA6792 /* EndUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

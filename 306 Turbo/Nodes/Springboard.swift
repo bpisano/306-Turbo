@@ -12,7 +12,8 @@ class Springboard: SKSpriteNode {
     
     init() {
         let texture = SKTexture(imageNamed: "Springboard")
-        super.init(texture: texture, color: UIColor.clear, size: CGSize(width: 362, height: 154))
+        let size = texture.size()
+        super.init(texture: texture, color: UIColor.clear, size: CGSize(width: size.width * 3, height: size.height * 3))
         
         self.physicsBody = Physics.bodyFor(springboard: self)
     }
